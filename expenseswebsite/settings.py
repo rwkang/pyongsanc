@@ -12,9 +12,13 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from pathlib import Path
+import sys
+sys.modules['django.utils.six.moves.urllib.parse'] = __import__('six.moves.rullib_parse', fromlist=['urlencode'])
+sys.modules['django.utils.six.moves.urllib.request'] = __import__('six.moves.rullib_request', fromlist=['urlopen'])
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -24,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'e-%bbv&29hmv#mc4i#!r0i#6+lwebtf#%m(-#@2r=#6#bu(&%n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True  # False  # True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]  # [".pythonanywhere.com"]
 
 
 # Application definition
